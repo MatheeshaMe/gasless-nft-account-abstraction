@@ -38,14 +38,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
     userbase
-      .init({
+      .init({ 
         appId: process.env.NEXT_PUBLIC_USERBASE_APP_ID!,
       })
-      .then((session: any) => {
-        // SDK initialized successfully
-
-        if (session.user) {
-          // there is a valid active session
+      .then((session: any) => {        if (session.user) {
           console.log(
             `Userbase login succesful. ✅ Welcome, ${session.user.username}!`
           );

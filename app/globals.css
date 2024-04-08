@@ -8,6 +8,7 @@ html,
 body {
 	font-family: 'Rubik';
 	font-weight: normal;
+	background-color: white;
 }
 h1{
 	margin-bottom: 1rem;
