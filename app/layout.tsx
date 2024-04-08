@@ -1,6 +1,5 @@
 "use client";
-import Footer from "@/components/instructionsComponent/navigation/footer";
-import Navbar from "@/components/instructionsComponent/navigation/navbar";
+import { AuthProvider } from "@common/AuthProvider";
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
 import { WagmiConfig, createConfig, sepolia } from "wagmi";
 
@@ -27,23 +26,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <WagmiConfig config={config}>
-        <ConnectKitProvider mode="dark">
-          <body>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                minHeight: "105vh",
-              }}
-            >
-              <Navbar />
-              <div style={{ flexGrow: 1 }}>{children}</div>
-              <Footer />
-            </div>
-          </body>
-        </ConnectKitProvider>
-      </WagmiConfig>
+      <AuthProvider>
+        <WagmiConfig config={config}>
+          <ConnectKitProvider mode="dark">
+            <body>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  minHeight: "105vh",
+                }}
+              >
+                <div style={{ flexGrow: 1 }}>{children}</div>
+              </div>
+            </body>
+          </ConnectKitProvider>
+        </WagmiConfig>
+      </AuthProvider>
     </html>
   );
 }
